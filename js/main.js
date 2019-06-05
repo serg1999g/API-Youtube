@@ -19,10 +19,20 @@ function onYouTubeIframeAPIReady() {
 let btn = document.querySelector('button'),
     url = document.querySelector('#url');
 
+
+
 btn.addEventListener("click", function () {
-    let id = url.value.split('='),
-        playlist_id = id[1].split('&')[0];
-    // console.log(id);
-    player.loadVideoByUrl("http://www.youtube.com/v/" + playlist_id);
+
+
+    if (url.value.indexOf("=") > 0) {
+        let id = url.value.split('='),
+            playlist_id = id[1].split('&')[0];
+        /* console.log(id); */
+        player.loadVideoByUrl("http://www.youtube.com/v/" + playlist_id);
+    } else {
+        let id = url.value.split('e/');
+        /* console.log(id); */
+        player.loadVideoByUrl("http://www.youtube.com/v/" + id[1]);
+    }
 
 });
